@@ -1,11 +1,11 @@
 from langfuse import Langfuse
-import time
+import time, os
 
 # Langfuse クライアント（v3 SDK）
 langfuse = Langfuse(
-    secret_key="LF_SK_XXXX",
-    public_key="LF_PK_XXXX",
-    host="http://localhost:3000",  # ← v2 サーバー
+    secret_key=os.getenv("LANGFUSE_SECRET_KEY"),
+    public_key=os.getenv("LANGFUSE_PUBLIC_KEY"),
+    host=os.getenv("LANGFUSE_HOST"),
 )
 
 # ---- trace（1リクエスト単位のまとまり）----
