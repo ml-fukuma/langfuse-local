@@ -2,14 +2,12 @@
 
 このリポジトリは、Langfuse v2 を macOS の Rancher Desktop 環境でローカル実行するためのセットアップガイドです。
 
----
 
 ## 🚀 前提条件
 
 - macOS
 - Rancher Desktop
 
----
 
 ## ⚙️ Rancher Desktop 設定
 
@@ -23,7 +21,6 @@
     docker version
 ```
 
----
 
 ## 📦 プロジェクト構成
 
@@ -31,7 +28,6 @@
     ├─ docker-compose.yml
     └─ README.md
 
----
 
 ## ▶ 起動方法
 
@@ -41,7 +37,6 @@
 
     docker compose ps
 
----
 
 ## 🌐 ブラウザアクセス
 
@@ -52,7 +47,6 @@
 - メールアドレス：任意 (例: test@example.com)
 - パスワード：任意（8文字以上）
 
----
 
 ## 🛑 停止・削除
 
@@ -63,7 +57,6 @@
 | コンテナ削除（データ保持） | docker compose down |
 | コンテナ＋DB完全削除 | docker compose down -v |
 
----
 
 ## 🐛 トラブルシューティング
 
@@ -71,15 +64,7 @@
 
     docker compose logs -f
 
----
-
-
----
 
 ## 📝 ライセンス
 
 この設定はローカル検証目的で使用可能です。
-
----
-
-
