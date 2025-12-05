@@ -99,7 +99,7 @@ sent!
 
 ### 🔍 実行時に確認すべきポイント
 http://localhost:3000 のダッシュボードにTraces数が表示されていればOKです。
-<img src="./img/img-result.png" width="50%">
+<img src="./img/img-result.png" width="80%">
 
 ## 📝 ライセンス
 
