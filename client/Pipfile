@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-langfuse = ">=3.0.0,<4.0.0"
+langfuse = "==2.*"
 
 [dev-packages]
 

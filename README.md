@@ -64,6 +64,42 @@
 
     docker compose logs -f
 
+### main.py の実行方法
+
+Langfuse + ローカルLLMなどアプリ側が正常起動しているか確認するために、 `main.py` を直接実行できます。
+
+#### 環境変数の設定 
+1. Langfuse の管理画面（Project Settings → API Keys）で発行した  
+   **Public Key / Secret Key** をコピー
+
+2. client配下の `.env` に以下内容を記述
+
+```env
+LANGFUSE_PUBLIC_KEY=lf-pub-xxxxxxxxxxxxxxxx
+LANGFUSE_SECRET_KEY=lf-sec-xxxxxxxxxxxxxxxx
+LANGFUSE_HOST=http://localhost:3000
+```
+
+#### main.py実行
+```bash
+# 仮想環境に入る
+cd ./client
+pipenv shell
+pipenv install
+
+
+# 実行
+python main.py
+```
+
+上記実行後に下記が出力されればOK
+```bash
+sent!
+```
+
+#### 🔍 実行時に確認すべきポイント
+http://localhost:3000 のダッシュボードにTraces数が表示されていればOKです。
+<img src="./img/img-result.png" width="50%">
 
 ## 📝 ライセンス
 
