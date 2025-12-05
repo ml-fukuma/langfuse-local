@@ -1,41 +1,43 @@
 from langfuse import Langfuse
 import time
 
-# ---------------------------
-# ★ここに Langfuse UI のキーをそのまま書く（v2 は直接渡す方式 OK）
-# ---------------------------
+# Langfuse クライアント（v3 SDK）
 langfuse = Langfuse(
-    public_key="LF_PK_XXXX",
     secret_key="LF_SK_XXXX",
-    host="http://localhost:3000",  # self-host
+    public_key="LF_PK_XXXX",
+    host="http://localhost:3000",  # ← v2 サーバー
 )
 
-# ---- trace（1会話・1リクエスト単位）----
+# ---- trace（1リクエスト単位のまとまり）----
 trace = langfuse.trace(
-    name="sample-trace",
+    name="sample-trace-v3-sdk-on-v2",
     user_id="user-123",
 )
 
-# ---- span（内部処理ステップ）----
+# ---- span（処理ステップ）----
 span = trace.span(
-    name="sample-span",
-    input="User asked: Hello?",
+    name="db-step",
+    input={"query": "SELECT * FROM users"},
 )
 
-time.sleep(1.2)
+# 実処理っぽく待機
+time.sleep(0.8)
 
+# span 終了（v3 SDKでは output をここで渡す）
 span.end(
-    output="AI response: Hi, nice to meet you!"
+    output={"result": ["Alice", "Bob"]},
 )
 
-# ---- generation（LLM 応答ログ）----
-gen = trace.generation(
+# ---- LLM generation ログ（ChatGPT API 等の応答記録）----
+generation = trace.generation(
     model="gpt-4-turbo",
-    input="Tell me a joke",
-    output="Why did the cat sit on the computer? To keep an eye on the mouse!"
+    input="Hello, joke please.",
+    output="Why did the cat sit on the computer? To keep an eye on the mouse!",
 )
 
-trace.end()
+generation.end()  # generation は end が必要
 
+# ---- 送信確定（flush）----
 langfuse.flush()
-print("sent!")
+
+print("sent to langfuse v2 server!")
